@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <%
 int dan = Integer.parseInt(request.getParameter("dan"));
 int limit = Integer.parseInt(request.getParameter("limit"));
@@ -8,8 +9,8 @@ String color = request.getParameter("color");
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>±¸±¸´Ü Ãâ·Â</title>
+<meta charset="UTF-8">
+<title>구구단 출력</title>
 </head>
 <body>
 
@@ -19,7 +20,7 @@ String color = request.getParameter("color");
 	<%
 	for (int i = 1; i <= limit; i++) {
 	%>
-	<div style="color:<%= color%>;"><%=dan%>
+	<div style="color:<%=color%>;"><%=dan%>
 		*
 		<%=i%>
 		=
