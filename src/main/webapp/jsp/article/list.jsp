@@ -5,6 +5,8 @@
 
 <%
 List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
+int cPage = (int) request.getAttribute("page");
+int totalPage = (int) request.getAttribute("totalPage");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +21,7 @@ List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getA
 	<h2>게시물 목록</h2>
 
 	<table style="border-collapse: collapse; border-color: green"
-		;  border="1px">
+		border="1px">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -44,6 +46,31 @@ List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getA
 		</tbody>
 	</table>
 
+	<style type="text/css">
+.page {
+	font-size: 1.4rem;
+}
+
+.page>a {
+	color: black;
+	text-decoration: none;
+}
+
+.page>a.cPage {
+	color: red;
+	text-decoration: underline;
+}
+</style>
+
+	<div class="page">
+		<%
+		for (int i = 1; i <= totalPage; i++) {
+		%>
+		<a class="<%=cPage == i ? "cPage" : "" %>" href="list?page=<%=i%>"><%=i%></a>
+		<%
+		}
+		%>
+	</div>
 
 
 
