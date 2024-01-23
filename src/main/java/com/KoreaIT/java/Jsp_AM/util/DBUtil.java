@@ -60,6 +60,7 @@ public class DBUtil {
 				rows.add(row);
 			}
 		} catch (SQLException e) {
+			System.out.println("=============Query 예외 발생================\n" + sql);
 			throw new SQLErrorException("SQL 예외, SQL : " + sql, e);
 		} finally {
 			if (rs != null) {
@@ -128,6 +129,7 @@ public class DBUtil {
 			}
 
 		} catch (SQLException e) {
+			System.out.println("=============Query 예외 발생================\n" + sql);
 			throw new SQLErrorException("SQL 예외, SQL : " + sql, e);
 		} finally {
 			if (rs != null) {
@@ -160,6 +162,7 @@ public class DBUtil {
 			stmt = sql.getPreparedStatement(dbConn);
 			affectedRows = stmt.executeUpdate();
 		} catch (SQLException e) {
+			System.out.println("=============Query 예외 발생================\n" + sql);
 			throw new SQLErrorException("SQL 예외, SQL : " + sql, e);
 		} finally {
 			if (stmt != null) {
