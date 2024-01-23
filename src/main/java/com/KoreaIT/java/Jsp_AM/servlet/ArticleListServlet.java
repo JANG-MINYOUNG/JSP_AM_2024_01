@@ -60,7 +60,7 @@ public class ArticleListServlet extends HttpServlet {
 			sql.append("LIMIT ?, ?;", limitFrom, itemsInAPage);
 
 			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
-			
+
 			request.setAttribute("page", page);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("articleRows", articleRows);
@@ -79,4 +79,8 @@ public class ArticleListServlet extends HttpServlet {
 		}
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
 }
