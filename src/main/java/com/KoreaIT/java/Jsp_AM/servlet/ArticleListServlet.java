@@ -62,8 +62,11 @@ public class ArticleListServlet extends HttpServlet {
 			List<Map<String, Object>> articleRows = DBUtil.selectRows(conn, sql);
 
 			request.setAttribute("page", page);
+			request.setAttribute("totalCnt", totalCnt);
 			request.setAttribute("totalPage", totalPage);
+			request.setAttribute("itemsInAPage", itemsInAPage);
 			request.setAttribute("articleRows", articleRows);
+
 			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 
 		} catch (SQLException e) {
