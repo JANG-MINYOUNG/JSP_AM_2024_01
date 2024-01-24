@@ -15,8 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/article/doModify")
-public class ArticleDoModifyServlet extends HttpServlet {
+@WebServlet("/member/doJoin")
+public class MemberDoJoinServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -34,21 +34,20 @@ public class ArticleDoModifyServlet extends HttpServlet {
 		try {
 			conn = DriverManager.getConnection(Config.getDbUrl(), Config.getDbUser(), Config.getDbPw());
 
-			int id = Integer.parseInt(request.getParameter("id"));
+			String loginId = request.getParameter("loginId");
+			String loginPw = request.getParameter("loginPw");
+			String name = request.getParameter("name");
 
-			String title = request.getParameter("title");
-			String body = request.getParameter("body");
+			SecSql sql = SecSql.from("INSERT INTO `member`");
+			sql.append("SET regDate = NOW(),");
+			sql.append("loginId = ?,", loginId);
+			sql.append("loginPw = ?,", loginPw);
+			sql.append("`name` = ?;", name);
 
-			SecSql sql = SecSql.from("UPDATE article");
-			sql.append("SET ");
-			sql.append("title = ?,", title);
-			sql.append("`body` = ?", body);
-			sql.append("WHERE id = ?;", id);
+			int id = DBUtil.insert(conn, sql);
 
-			DBUtil.update(conn, sql);
-
-			response.getWriter().append(String
-					.format("<script>alert('%d번 글이 수정되었습니다.'); location.replace('detail?id=%d');</script>", id, id));
+			response.getWriter().append(String.format(
+					"<script>alert('%s님, 회원가입이 완료되었습니다.'); location.replace('../article/list');</script>", name));
 
 		} catch (SQLException e) {
 			System.out.println("에러 : " + e);

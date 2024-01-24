@@ -3,7 +3,7 @@
 <%@ page import="java.lang.Math"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-totalCnt
+
 <%
 List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
 int cPage = (int) request.getAttribute("page");
