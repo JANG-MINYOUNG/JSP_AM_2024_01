@@ -64,6 +64,8 @@ body {
 	<div>
 		<a href="../home/main">메인으로 이동</a>
 	</div>
+
+
 	<div>
 		<a href="write">글쓰기</a>
 	</div>
@@ -77,6 +79,7 @@ body {
 				<th>번호</th>
 				<th>작성날짜</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>수정</th>
 				<th>삭제</th>
 			</tr>
@@ -89,6 +92,7 @@ body {
 				<td><%=articleRow.get("id")%></td>
 				<td><%=articleRow.get("regDate")%></td>
 				<td><a href="detail?id=<%=articleRow.get("id")%>"><%=articleRow.get("title")%></a></td>
+				<td><%=articleRow.get("writer")%></td>
 				<td><a href="modify?id=<%=articleRow.get("id")%>">수정</a></td>
 				<td><a href="doDelete?id=<%=articleRow.get("id")%>">del</a></td>
 			</tr>
@@ -119,7 +123,6 @@ body {
 			}
 
 			for (int i = from; i <= end; i++) {
-				
 			%>
 			<a class="<%=cPage == i ? "cPage" : ""%>" href="list?page=<%=i%>"><%=i%></a>
 			<%
