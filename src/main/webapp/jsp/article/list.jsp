@@ -156,7 +156,7 @@ body {
 			end_v2 = totalPage;
 			}
 
-			int beforeBtn = pageGroup - pageSize_v2;
+			int beforeBtn = cPage - pageSize_v2;
 
 			if (beforeBtn < 1) {
 			beforeBtn = 1;
@@ -169,10 +169,13 @@ body {
 			<a class="<%=cPage == i ? "cPage" : ""%>" href="list?page=<%=i%>"><%=i%></a>
 			<%
 			}
-			int afterBtn = pageGroup + pageSize_v2;
+			int afterBtn = pageGroup * pageSize_v2 + 1;
 			if (afterBtn > totalPage) {
-			// 			afterBtn = totalPage;
+			afterBtn = totalPage;
 			}
+			System.out.println("pageSize_v2 : " + pageSize_v2);
+			System.out.println("pageGroup : " + pageGroup);
+			System.out.println("afterBtn : " + afterBtn);
 			%>
 			<a href="list?page=<%=afterBtn%>">▷</a>
 			<%
