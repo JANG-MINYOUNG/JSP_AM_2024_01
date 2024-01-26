@@ -25,6 +25,20 @@ public class ArticleWriteServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
+		boolean isLogined = false;
+		int loginedMemberId = -1;
+		Map<String, Object> loginedMember = null;
+
+		if (session.getAttribute("loginedMemberId") != null) {
+			isLogined = true;
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			loginedMember = (Map<String, Object>) session.getAttribute("loginedMember");
+		}
+
+		request.setAttribute("isLogined", isLogined);
+		request.setAttribute("loginedMemberId", loginedMemberId);
+		request.setAttribute("loginedMember", loginedMember);
+
 		if (session.getAttribute("loginedMemberId") == null) {
 			response.getWriter().append(
 					String.format("<script>alert('로그인 후 이용해주세요'); location.replace('../member/login');</script>"));

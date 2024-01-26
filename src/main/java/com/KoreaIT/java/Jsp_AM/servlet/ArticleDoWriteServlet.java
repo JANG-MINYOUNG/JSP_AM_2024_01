@@ -40,6 +40,13 @@ public class ArticleDoWriteServlet extends HttpServlet {
 
 			String title = request.getParameter("title");
 			String body = request.getParameter("body");
+
+			if (session.getAttribute("loginedMemberId") == null) {
+				response.getWriter().append(
+						String.format("<script>alert('로그인 후 이용해주세요'); location.replace('../member/login');</script>"));
+				return;
+			}
+
 			int loginedMemberId = (int) session.getAttribute("loginedMemberId");
 
 			SecSql sql = SecSql.from("INSERT INTO article");
